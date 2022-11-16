@@ -36,20 +36,22 @@
                         <div class="col-md-3">
                             <div class="product-card">
                                 <div class="product-card-img">
-                                    @if ($productItem->quantity > 0)
-                                        <label class="stock bg-success">In Stock</label>
-                                    @else
-                                        <label class="stock bg-danger">Out of Stock</label>
-                                    @endif
+                                    <a href="{{ url('/collections/'.$productItem->category->slug.'/'.$productItem->slug) }}">
+                                        @if ($productItem->quantity > 0)
+                                            <label class="stock bg-success">In Stock</label>
+                                        @else
+                                            <label class="stock bg-danger">Out of Stock</label>
+                                        @endif
 
-                                    @if ($productItem->productImages->count() > 0)
-                                        <img src="{{ asset($productItem->productImages[0]->image) }}" alt="{{ $productItem->name }}">
-                                    @endif
+                                        @if ($productItem->productImages->count() > 0)
+                                            <img src="{{ asset($productItem->productImages[0]->image) }}" alt="{{ $productItem->name }}">
+                                        @endif
+                                    </a>
                                 </div>
                                 <div class="product-card-body">
                                     <p class="product-brand">{{ $productItem->brand }}</p>
                                     <h5 class="product-name">
-                                    <a href="">
+                                    <a href="{{ url('/collections/'.$productItem->category->slug.'/'.$productItem->slug) }}">
                                         {{ $productItem->name }}
                                     </a>
                                     </h5>
