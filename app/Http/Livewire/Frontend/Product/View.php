@@ -7,12 +7,22 @@ use Livewire\Component;
 class View extends Component
 {
 
-    public $category;
+    public $category, $product, $prodColorSelectedQuantity;
 
     public function mount($category, $product)
     {
         $this->category = $category;
         $this->product = $product;
+    }
+
+    public function colorSelected($productColorId)
+    {
+        $productColor = $this->product->productColors()->where('id', $productColorId)->first();
+        $this->prodColorSelectedQuantity = $productColor->quantity;
+
+        if ($this->prodColorSelectedQuantity == 0) {
+            $this->prodColorSelectedQuantity = 'outofstock';
+        }
     }
 
     public function render()
